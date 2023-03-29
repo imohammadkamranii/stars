@@ -1,93 +1,67 @@
 <html lang="en">
-
 <head>
-  <script>
-    // examples
-// https://threejs.org/examples/?q=particle#webgl_points_billboards
-
-let camera
-let scene
-let renderer
-let material
-let mouseX = 0
-let mouseY = 0
-let windowHalfX = window.innerWidth / 2
-let windowHalfY = window.innerHeight / 2
-
-init()
-animate()
-
-function init () {
-  camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 5, 2000)
-  camera.position.z = 500
-
-  scene = new THREE.Scene()
-  scene.fog = new THREE.FogExp2(0x0000ff, 0.001)
-
-  const geometry = new THREE.BufferGeometry()
-  const vertices = []
-  const size = 2000
-
-  for ( let i = 0; i < 20000; i ++ ) {
-    const x = (Math.random() * size + Math.random() * size) / 2 - size / 2
-    const y = (Math.random() * size + Math.random() * size) / 2 - size / 2
-    const z = (Math.random() * size + Math.random() * size) / 2 - size / 2
-
-    vertices.push(x, y, z)
-  }
-
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3))
-
-  material = new THREE.PointsMaterial({
-    size: 2,
-    color: 0xffffff,
-  })
-
-  const particles = new THREE.Points(geometry, material)
-  scene.add(particles)
-
-  renderer = new THREE.WebGLRenderer()
-  renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  document.body.appendChild(renderer.domElement)
-
-  document.body.style.touchAction = 'none'
-  document.body.addEventListener('pointermove', onPointerMove)
-  window.addEventListener('resize', onWindowResize)
-}
-
-function onWindowResize () {
-  windowHalfX = window.innerWidth / 2
-  windowHalfY = window.innerHeight / 2
-
-  camera.aspect = window.innerWidth / window.innerHeight
-  camera.updateProjectionMatrix()
-  renderer.setSize(window.innerWidth, window.innerHeight)
-}
-
-function onPointerMove (event) {
-  mouseX = event.clientX - windowHalfX 
-  mouseY = event.clientY - windowHalfY
-}
-
-function animate () {
-  requestAnimationFrame(animate)
-  render()
-}
-
-function render () {
-  camera.position.x += (mouseX * 2 - camera.position.x) * 0.02
-  camera.position.y += (-mouseY * 2 - camera.position.y) * 0.02
-  camera.lookAt(scene.position)
-  renderer.render(scene, camera)
-  scene.rotation.x += 0.001
-  scene.rotation.y += 0.002
-}
-  </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>art</title>
 </head>
-
 <body>
-
+  <div id="controls">
+    <div style="text-align:center;margin:0px;padding:0px;">
+      <h1><img alt="Emoji Art Maker" id="banner" src="https://assets.codepen.io/1197275/EmojiBanner1.png" /></h1>
+    </div>
+    <input type="file" name="image" id="image"><div id="spinner"></div>
+    
+    <div class="container">
+      <label title="Smaller window = higher resolution, more emojis, slower" for="pSize">Analysis Window:</label>
+      <input oninput="pSizeInfo.innerText=this.value+'px'" type="range" step="1" min="1" max="50" value="7" id="pSize">
+      <label class="infoLabel" id="pSizeInfo">7px</label>
+    </div>
+    
+    <div class="container">
+      <label for="scale" title="Controls the size of each emoji in the output image. (if you go too high here with lots of emojis, you may exceed max canvas size)">Output emoji size:</label>
+      <input oninput="scaleInfo.innerText=this.value+'px'" type="range" min="1" step="1" max="50" value="12" id="scale">
+      <label class="infoLabel" id="scaleInfo">12px</label>
+    </div>
+    
+    <div id="c1" class="container">
+      <label for="tolerance" title="Low tolerance = more accurate color, less variety of emojis">Match Tolerance:</label>
+      <input oninput="toleranceInfo.innerText=this.value" type="range" min="1" step="1" max="30" value="8" id="tolerance">
+      <label class="infoLabel" id="toleranceInfo">8</label>
+    </div>
+    
+    <div class="container" style="display:none">
+          <label for="fillColor" title="Controls 'empty space' fill color when analyzing emojis and effects brightness of result">Emoji Fill Color (black to white):</label><input type="color" value="#888888" id="fillColor">
+    </div>
+    
+     <div class="container">
+          <label for="emptySpace" title="Controls allowed amount of empty space inside emojis. (consider: ❗ and 🟥 are both red)">Allowed Empty Space: </label>
+       <input oninput="emptySpaceInfo.innerText=(this.value*100)+'%'" type="range" min=".4" step=".01" max="1" value=".7" id="emptySpace">
+       <label class="infoLabel" id="emptySpaceInfo">70%</label>
+    </div>
+    
+      <div class="container">
+         <input type="checkbox" checked id="enableBgColor">
+          <label for="bgColor" title="">Bg Color:</label><input type="color" id="bgColor">
+    </div>
+  
+    <div class="container">
+      <label for="display">Display mode:</label>
+      <select id="display">     
+        <option selected value="grid">Grid</option>      
+        <option value="mosaic">Mosaic</option> 
+        <option value="chart">Chart</option>   
+      </select>
+    </div>
+    
+    <div class="container">
+      <label for="hideBlack">Hide Black/Transparent</label><input type="checkbox" id="hideBlack">
+    </div>
+    
+  </div>
+  
+  <canvas id="result"></canvas>
+  
+  <footer>Also try <a href="https://www.EmojiArtMaker.com" target="_blank">EmojiArtMaker.com</a>, The World's Most Advanced™ Emoji Mosaics</footer>
 </body>
-
 </html>
