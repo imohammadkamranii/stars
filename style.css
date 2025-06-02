@@ -1,292 +1,187 @@
-/* ==============================================
-   تنظیمات کلی و متغیرهای رنگ
-   ============================================== */
-:root {
-  --primary-color: #4a90e2;        /* آبی ملایم و چشم‌نواز */
-  --primary-hover: #357ab8;        /* تیره‌تر برای حالت هاور */
-  --secondary-color: #ffffff;      /* پس‌زمینه سفید */
-  --accent-color: #f5a623;         /* نارنجی ملایم برای تأکید */
-  --text-primary: #2c3e50;         /* متن تیره برای خوانایی */
-  --text-secondary: #7f8c8d;       /* متن کم‌رنگ‌تر برای توضیحات */
-  --bg-light: #f9fbfd;             /* پس‌زمینه بسیار روشن */
-  --bg-dark: #ecf0f1;              /* پس‌زمینه ثانویه */
-  --radius-default: 8px;           /* شعاع پیش‌فرض برای گوشه‌ها */
-  --transition-fast: 0.2s ease-in-out;
-  --font-sans: 'Segoe UI', Verdana, sans-serif;
-}
-
-/* ==============================================
-   تنظیمات بدنه صفحه
-   ============================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+/* فونت‌های گوگل برای ظاهر مدرن */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 body {
+  font-family: 'Poppins', sans-serif; /* فونت مدرن و زیبا */
   margin: 0;
   padding: 20px;
-  font-family: var(--font-sans);
-  background-color: var(--bg-light);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, #e0f7fa 0%, #f4f7fa 100%); /* گرادیانت ملایم */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #333;
 }
 
-/* ==============================================
-   هدر و تیتر اصلی
-   ============================================== */
 h1 {
-  margin: 0;
-  padding-bottom: 10px;
-  font-size: 2.75rem;
+  font-size: 2.8rem;
   font-weight: 600;
-  letter-spacing: 1px;
-  color: var(--primary-color);
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  color: #2c3e50;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 15px 0;
 }
 
-/* ==============================================
-   بنر یا تصویر اصلی
-   ============================================== */
 #banner {
-  max-width: 90%;
-  width: 100%;
-  height: auto;
-  margin: 20px 0;
-  border-radius: calc(var(--radius-default) * 2);
-  overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transition: transform var(--transition-fast);
+  max-width: 85%;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
 #banner:hover {
-  transform: scale(1.02);
+  transform: scale(1.02); /* افکت زوم ملایم */
 }
 
-/* ==============================================
-   اسپینر لودینگ
-   ============================================== */
 #spinner {
-  display: inline-block;
-  margin-top: 15px;
-  font-size: 1.25rem;
+  color: #e74c3c; /* قرمز جذاب */
+  font-size: 1.3rem;
   font-weight: 600;
-  color: var(--accent-color);
-  animation: spin 1s linear infinite;
+  margin: 10px 0;
+  animation: pulse 1.5s infinite; /* انیمیشن ضربان */
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
 }
 
-/* ==============================================
-   بخش کنترل‌ها (دکمه‌ها، اسلایدر، انتخابگرها)
-   ============================================== */
 #controls {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
   width: 100%;
-  max-width: 640px;
-  background-color: var(--secondary-color);
-  border-radius: var(--radius-default);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  padding: 24px;
-  margin: 30px auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
+  margin: 20px auto;
+  border: 1px solid #e0e0e0;
 }
 
-/* برچسب اطلاعات یا عنوان برای کنترل‌ها */
-.infoLabel {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-left: 8px;
-}
-
-/* ظرف کنترل‌ها جهت چیدمان افقی یا عمودی */
 .container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 12px;
+  margin: 15px 0;
+  flex-wrap: wrap; /* برای پاسخگویی بهتر در صفحه‌نمایش‌های کوچک */
 }
 
-/* دکمه‌ها */
+.infoLabel {
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
 button {
   padding: 12px 24px;
   font-size: 1rem;
   font-weight: 500;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background: linear-gradient(45deg, #2ecc71, #27ae60); /* گرادیانت سبز */
+  color: white;
   border: none;
-  border-radius: var(--radius-default);
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color var(--transition-fast), transform var(--transition-fast),
-    box-shadow var(--transition-fast);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-  background-color: var(--primary-hover);
+  background: linear-gradient(45deg, #27ae60, #2ecc71);
   transform: translateY(-2px);
 }
 
 button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* اسلایدر */
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 6px;
-  border-radius: 4px;
-  background: var(--bg-dark);
-  outline: none;
-  cursor: pointer;
-  transition: background var(--transition-fast);
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--primary-color);
-  cursor: pointer;
-  transition: background var(--transition-fast);
-}
-
-input[type="range"]::-webkit-slider-thumb:hover {
-  background: var(--primary-hover);
-}
-
-/* انتخابگر رنگ */
-input[type="color"] {
-  width: 100%;
-  height: 40px;
-  padding: 0;
-  border: 2px solid var(--bg-dark);
+input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ccc;
   border-radius: 6px;
+  background: #f9f9f9;
   cursor: pointer;
-  transition: border-color var(--transition-fast);
 }
 
-input[type="color"]:hover {
-  border-color: var(--primary-color);
+input[type="range"] {
+  accent-color: #2ecc71; /* رنگ سبز هماهنگ */
+  cursor: pointer;
+  width: 150px;
 }
 
-/* منوی کشویی (سلکت) */
+input[type="color"] {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 3px;
+  cursor: pointer;
+  width: 50px;
+  height: 30px;
+}
+
 select {
-  width: 100%;
   padding: 10px;
-  font-size: 1rem;
-  border: 2px solid #ccc;
-  border-radius: var(--radius-default);
-  background-color: var(--secondary-color);
-  color: var(--text-primary);
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
   cursor: pointer;
-  transition: border-color var(--transition-fast);
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
 }
 
 select:hover {
-  border-color: var(--primary-color);
+  border-color: #2ecc71;
 }
 
-/* ==============================================
-   بخش نمایش تصویر خروجی
-   ============================================== */
-#output {
-  margin-top: 30px;
-  max-width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+input[type="checkbox"] {
+  accent-color: #2ecc71;
+  cursor: pointer;
 }
 
-#output img {
-  max-width: 100%;
-  border-radius: var(--radius-default);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* توضیحات یا توضیحات اضافی در پایین */
-#output .caption {
-  margin-top: 12px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-/* ==============================================
-   فوتر
-   ============================================== */
 footer {
-  margin-top: auto;
-  padding: 20px 0;
-  width: 100%;
-  background-color: var(--bg-dark);
-  text-align: center;
-}
-
-footer p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+  margin-top: 30px;
+  font-size: 0.95rem;
+  color: #7f8c8d;
 }
 
 footer a {
-  color: var(--primary-color);
+  color: #2ecc71;
   text-decoration: none;
   font-weight: 500;
-  transition: color var(--transition-fast);
+  transition: color 0.3s ease;
 }
 
 footer a:hover {
-  color: var(--primary-hover);
+  color: #27ae60;
   text-decoration: underline;
 }
 
-/* ==============================================
-   واکنش‌گرایی
-   ============================================== */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  #controls {
-    padding: 16px;
-    gap: 16px;
-  }
-
-  button {
-    padding: 10px 20px;
-  }
+canvas#result {
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  margin-top: 20px;
 }
 
-@media (max-width: 480px) {
+/* پاسخگویی برای صفحه‌نمایش‌های کوچک */
+@media (max-width: 600px) {
   h1 {
     font-size: 2rem;
   }
-
   #controls {
-    display: block;
+    padding: 15px;
+    max-width: 90%;
   }
-
   .container {
     flex-direction: column;
     gap: 8px;
   }
+  button {
+    width: 100%;
+    padding: 10px;
   }
+  input[type="range"] {
+    width: 100%;
+  }
+}
