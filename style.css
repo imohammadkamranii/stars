@@ -1,31 +1,114 @@
 body {
-  font-family:verdana; 
-  padding: 5px; 
-  text-align:center;
+  font-family: 'Segoe UI', Verdana, sans-serif; /* فونت مدرن‌تر و fallback به Verdana */
+  padding: 15px; /* افزایش پدینگ برای فضای بیشتر */
+  text-align: center;
+  background-color: #f4f7fa; /* پس‌زمینه روشن و ملایم */
+  margin: 0; /* حذف حاشیه پیش‌فرض */
+  min-height: 100vh; /* اطمینان از پوشش کامل صفحه */
 }
+
 h1 {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 10px 0; /* فاصله عمودی برای بهتر دیده شدن */
+  font-size: 2.5rem; /* اندازه فونت بزرگ‌تر */
+  color: #333; /* رنگ تیره‌تر برای خوانایی */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* سایه ملایم برای عمق */
 }
-body {
-  padding:5px;
-}
+
 #banner {
-  max-width:80%;
-  color:green;
-  filter:hue-rotate(-10deg);
+  max-width: 80%;
+  filter: hue-rotate(-10deg) brightness(1.1); /* بهبود روشنایی و رنگ */
+  border-radius: 10px; /* گوشه‌های گرد برای تصویر بنر */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* سایه نرم برای عمق */
 }
+
 #spinner {
-  color:red;
+  color: #e63946; /* قرمز جذاب‌تر */
+  font-size: 1.2rem; /* کمی بزرگ‌تر برای جلب توجه */
+  font-weight: bold;
 }
+
 #controls {
-  padding:5px;
+  padding: 15px; /* پدینگ بیشتر برای کنترل‌ها */
+  background-color: #ffffff; /* پس‌زمینه سفید برای تمایز */
+  border-radius: 12px; /* گوشه‌های گرد */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* سایه ملایم */
+  max-width: 600px; /* محدود کردن عرض برای خوانایی */
+  margin: 20px auto; /* مرکز کردن و فاصله از بالا و پایین */
 }
+
 .infoLabel {
-  font-size:75%;
+  font-size: 0.85rem; /* کمی بزرگ‌تر برای خوانایی */
+  color: #555; /* رنگ خاکستری تیره برای متعادل بودن */
+  margin-left: 8px; /* فاصله از اسلایدر */
 }
+
 .container {
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0; /* فاصله عمودی بین کنترل‌ها */
+  gap: 10px; /* فاصله بین المان‌های داخل کانتینر */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #4CAF50; /* سبز جذاب */
+  color: white;
+  border: none;
+  border-radius: 8px; /* گوشه‌های گرد */
+  transition: background-color 0.3s, transform 0.2s; /* انیمیشن نرم */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* سایه دکمه */
+}
+
+button:hover {
+  background-color: #45a049; /* رنگ تیره‌تر در هاور */
+  transform: translateY(-2px); /* حرکت عمودی برای حس کلیک */
+}
+
+button:active {
+  transform: translateY(0); /* بازگشت به حالت اولیه در کلیک */
+}
+
+input[type="range"] {
+  accent-color: #4CAF50; /* رنگ اسلایدر متناسب با دکمه */
+  cursor: pointer;
+}
+
+input[type="color"] {
+  border: 1px solid #ddd; /* حاشیه ملایم برای انتخاب‌گر رنگ */
+  border-radius: 4px;
+  padding: 2px;
+}
+
+select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+select:hover {
+  border-color: #4CAF50; /* تغییر رنگ حاشیه در هاور */
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+footer a {
+  color: #4CAF50;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #45a049;
+  text-decoration: underline;
 }
